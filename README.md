@@ -1,7 +1,7 @@
 # ⚡ shan — Premium Personal Virtual Assistant
 
 <div align="center">
-  <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23bffe1b'/><stop offset='100%25' stop-color='%23bba6ff'/></linearGradient></defs><rect width='100' height='100' rx='28' fill='%23000000'/><path d='M65,36 C60,25 48,24 38,32 C26,42 46,52 52,57 C58,62 72,70 64,80 C56,90 42,88 35,78' fill='none' stroke='url(%23g)' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/></svg>" width="120" height="120" alt="shan logo" />
+  <img src="logo.svg" width="120" height="120" alt="shan logo" />
   
   <h3>An ultra-premium, interactive AI personal assistant powered by Groq.</h3>
   
