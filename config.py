@@ -15,8 +15,10 @@ if os.path.exists(env_path):
 GROQ_API_KEY  = os.environ.get("GROQ_API_KEY", "")
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
-# ── Active Model ──────────────────────────────────────────────────────────────
-MODEL_ID = "llama-3.3-70b-versatile"   # Free on Groq, no card needed
+# ── Active Models ─────────────────────────────────────────────────────────────
+LLAMA_MODEL         = "llama-3.3-70b-versatile"
+QWEN_MODEL          = "qwen/qwen3-32b"
+LLAMA_INSTANT_MODEL = "llama-3.1-8b-instant"
 
 # ── Generation Parameters ─────────────────────────────────────────────────────
 PARAMETERS = {

@@ -28,8 +28,8 @@ let adminMode     = localStorage.getItem('adminMode') === 'true';
 
 const MODEL_META = {
   llama:   { name: 'Llama 3.3', dotColor: 'var(--lime)',  dotClass: 'bg-lime' },
-  granite: { name: 'Mixtral',   dotColor: 'var(--lilac)', dotClass: 'bg-lilac' },
-  mistral: { name: 'Gemma 2',   dotColor: 'var(--coral)', dotClass: 'bg-coral' }
+  granite: { name: 'Qwen 3',    dotColor: 'var(--lilac)', dotClass: 'bg-lilac' },
+  mistral: { name: 'Llama 3.1', dotColor: 'var(--coral)', dotClass: 'bg-coral' }
 };
 
 // ── Admin Mode Logic ─────────────────────────────────────────

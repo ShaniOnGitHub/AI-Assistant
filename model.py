@@ -5,7 +5,7 @@
 
 from openai import OpenAI
 import json, re
-from config import GROQ_API_KEY, GROQ_BASE_URL, PARAMETERS, MODEL_ID
+from config import GROQ_API_KEY, GROQ_BASE_URL, PARAMETERS, LLAMA_MODEL, QWEN_MODEL, LLAMA_INSTANT_MODEL
 
 # Groq uses an OpenAI-compatible API
 client = OpenAI(api_key=GROQ_API_KEY, base_url=GROQ_BASE_URL)
@@ -18,9 +18,9 @@ Always respond ONLY with a valid JSON object in this exact format — no extra t
   "response": "<your helpful, friendly reply>"
 }"""
 
-def call_model(user_message: str, system_prompt: str) -> dict:
+def call_model(user_message: str, system_prompt: str, model_id: str) -> dict:
     res = client.chat.completions.create(
-        model=MODEL_ID,
+        model=model_id,
         messages=[
             {"role": "system", "content": system_prompt + "\n\n" + SYSTEM_PROMPT},
             {"role": "user",   "content": user_message},
@@ -36,12 +36,12 @@ def call_model(user_message: str, system_prompt: str) -> dict:
     data["sentiment"] = max(0, min(100, int(data.get("sentiment", 50))))
     return data
 
-# All three buttons use the same free model
+# Dynamic multi-model routing on Groq backend
 def llama_response(system_prompt: str, user_prompt: str) -> dict:
-    return call_model(user_prompt, system_prompt)
+    return call_model(user_prompt, system_prompt, LLAMA_MODEL)
 
 def granite_response(system_prompt: str, user_prompt: str) -> dict:
-    return call_model(user_prompt, system_prompt)
+    return call_model(user_prompt, system_prompt, QWEN_MODEL)
 
 def mistral_response(system_prompt: str, user_prompt: str) -> dict:
-    return call_model(user_prompt, system_prompt)
+    return call_model(user_prompt, system_prompt, LLAMA_INSTANT_MODEL)
