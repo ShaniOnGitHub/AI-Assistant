@@ -10,7 +10,7 @@ def index():
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({"status": "ok", "backend": "Google Gemini"})
+    return jsonify({"status": "ok", "backend": "Groq"})
 
 @app.route('/generate', methods=['POST'])
 def generate():

@@ -1,79 +1,38 @@
-# ⚡ shan — Premium Personal Virtual Assistant
+# shan — Personal AI Chat Assistant
 
-<div align="center">
-  <img src="logo.svg" width="120" height="120" alt="shan logo" />
-  
-  <h3>An ultra-premium, interactive AI personal assistant powered by Groq.</h3>
-  
-  <p align="center">
-    <a href="#-features">Features</a> &bull;
-    <a href="#-getting-started">Getting Started</a> &bull;
-    <a href="#-project-structure">Project Structure</a> &bull;
-    <a href="#-security">Security</a>
-  </p>
-</div>
+A small Flask app with a Groq backed chat interface. Built as a personal
+project to try out a few different model sizes behind one UI and to
+practice building a custom frontend instead of using a chat library.
 
----
+## What it does
 
-## 🎨 Features
+- Single chat endpoint (`/generate`) that routes to one of three models
+  on Groq: `llama-3.3-70b-versatile`, `qwen/qwen3-32b`, or
+  `llama-3.1-8b-instant`, selectable from the UI.
+- Every response is asked to come back as structured JSON (summary,
+  a 0 to 100 sentiment score, and the reply text), which the frontend
+  uses to show a small telemetry panel: response time, sentiment, and
+  a one line summary alongside the actual answer.
+- Custom animated frontend (vanilla JS and CSS, no framework) with a
+  dark and a light theme.
 
-- 🌀 **Interactive Welcome Orb** — A beautifully animated, liquid-morphing chrome orb designed to react dynamically.
-- 🌓 **Dynamic Dual Themes**
-  - **Sleek Dark Mode** — Premium deep interface with sub-glow highlights.
-  - **Neon Glassmorphic Light Mode** — Vertical neon-to-peach gradient backdrop with semi-transparent glass layers and dynamic high-contrast typography.
-- ⚙️ **Developer Mode Dashboard** — Toggle detailed real-time API telemetry, request speeds, summaries, and sentiment metrics with a clean header button.
-- 🏎️ **Groq-Accelerated Intelligence** — Rapid response mapping targeting Llama 3.3, Mixtral 8x7B, and Gemma 2.
-- 🔒 **Zero-Secrets Configuration** — Native local environment decoupling using gitignore and dynamic `.env` loaders.
+## Stack
 
----
+Flask, the Groq API through the OpenAI compatible client, vanilla JS/CSS
+for the frontend.
 
-## 🚀 Getting Started
+## Running locally
 
-### 1. Clone & Set Up Directory
-Ensure you are in the project root:
 ```bash
-cd AI-Assistant
-```
-
-### 2. Configure Environment Secrets
-Create a local `.env` file in the root folder:
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-### 3. Install Dependencies
-```bash
+cp .env.example .env   # add GROQ_API_KEY
 pip install -r requirements.txt
-```
-
-### 4. Start the Application
-Run the local Flask server:
-```bash
 python app.py
 ```
-Open **[http://127.0.0.1:5000](http://127.0.0.1:5000)** in your browser!
 
----
+Open http://127.0.0.1:5000.
 
-## 📂 Project Structure
+## Notes
 
-```
-AI-Assistant/
-├── static/
-│   ├── script.js        # Dynamic UI transitions, model calls, and chat streams
-│   └── styles.css       # Premium responsive layout and animations
-├── templates/
-│   └── index.html       # Clean bento layout with dynamic DOM entrypoints
-├── .env                 # Local API credentials (ignored by Git)
-├── .gitignore           # Safeguard credentials, logs, and cache targets
-├── app.py               # Flask backend router & telemetry mapper
-├── config.py            # Local environment variable parser & configurations
-├── model.py             # Groq SDK integration & OpenAI-compatible pipelines
-└── requirements.txt     # Python dependency locks
-```
-
----
-
-## 🔒 Security
-
-This repository utilizes strict push-protection standards. To prevent security leaks, all local API keys are externalized to the local `.env` file, which is actively ignored in Git via `.gitignore`.
+This was a learning project for trying multiple model sizes and building
+a non trivial frontend by hand. It is not production hardened: there is
+no rate limiting, no auth, and error handling is minimal.
